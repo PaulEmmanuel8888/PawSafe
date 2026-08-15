@@ -4,11 +4,6 @@ function Hero() {
   return (
     <section className="px-5 pb-12 pt-12 sm:px-8 sm:pb-16 sm:pt-16 lg:px-12 lg:pt-20">
       <div className="mx-auto max-w-4xl text-center">
-        <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full bg-[#E8F5ED] px-4 py-2 text-sm font-medium text-[#2F855A]">
-          <ShieldCheck size={16} />
-          AI-powered food safety
-        </div>
-
         <h1 className="text-4xl font-extrabold tracking-tight text-[#17211B] sm:text-5xl lg:text-6xl">
           Can your dog
           <span className="block text-[#2F855A]">eat this?</span>
