@@ -71,33 +71,59 @@ function ResultCard({ result, onReset }) {
           </div>
 
           <div className="p-6 sm:p-7">
-            <p className="text-sm font-semibold uppercase tracking-wider text-[#17211B]/40">
-              Food checked
-            </p>
-
-            <h3 className="mt-1 text-2xl font-bold capitalize tracking-tight text-[#17211B]">
-              {result.food}
-            </h3>
-
-            <p className="mt-5 text-sm leading-7 text-[#17211B]/65 sm:text-base">
+            <p className="text-sm leading-7 text-[#17211B]/65 sm:text-base">
               {result.summary}
             </p>
 
-            {result.reasons?.length > 0 && (
+            {result.foods?.length > 0 && (
               <div className="mt-7">
-                <h4 className="text-sm font-bold text-[#17211B]">Why?</h4>
+                <h4 className="text-sm font-bold text-[#17211B]">
+                  Foods we found
+                </h4>
 
-                <ul className="mt-3 space-y-2">
-                  {result.reasons.map((reason, index) => (
-                    <li
-                      key={index}
-                      className="flex gap-3 text-sm leading-6 text-[#17211B]/60"
-                    >
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#2F855A]" />
-                      {reason}
-                    </li>
-                  ))}
-                </ul>
+                <div className="mt-3 space-y-3">
+                  {result.foods.map((food, index) => {
+                    const foodConfig =
+                      verdictConfig[food.verdict] || verdictConfig.unknown;
+
+                    const FoodIcon = foodConfig.icon;
+
+                    return (
+                      <div
+                        key={index}
+                        className="rounded-2xl border border-[#17211B]/8 bg-[#FAFAF7] p-4"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div
+                            className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${foodConfig.iconContainer}`}
+                          >
+                            <FoodIcon size={18} strokeWidth={2.4} />
+                          </div>
+
+                          <div className="min-w-0">
+                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                              <h5 className="font-bold capitalize text-[#17211B]">
+                                {food.name}
+                              </h5>
+
+                              <span
+                                className={`text-xs font-semibold ${foodConfig.text}`}
+                              >
+                                {foodConfig.label}
+                              </span>
+                            </div>
+
+                            {food.reason && (
+                              <p className="mt-1.5 text-sm leading-6 text-[#17211B]/60">
+                                {food.reason}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             )}
 

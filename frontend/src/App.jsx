@@ -2,6 +2,8 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import FoodChecker from "./components/FoodChecker";
 import ResultCard from "./components/ResultCard";
+import HowItWorks from "./components/HowItWorks";
+import Footer from "./components/Footer";
 import { useState } from "react";
 
 function App() {
@@ -25,11 +27,13 @@ function App() {
             <Hero />
 
             <FoodChecker onResult={handleResult} />
+            <HowItWorks />
           </>
         )}
 
         {result && <ResultCard result={result} onReset={handleReset} />}
       </main>
+      <Footer />
     </div>
   );
 }
