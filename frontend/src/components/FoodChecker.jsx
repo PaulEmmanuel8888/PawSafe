@@ -1,10 +1,13 @@
 import { useRef, useState } from "react";
-import { Camera, ImagePlus, Search, Upload, X } from "lucide-react";
+import { Camera, Search, X } from "lucide-react";
+import { analyzeFood } from "../services/api";
 
-function FoodChecker() {
+function FoodChecker({ onResult }) {
   const [input, setInput] = useState("");
   const [image, setImage] = useState(null);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const fileInputRef = useRef(null);
 
   const handleImageChange = (event) => {
@@ -28,7 +31,7 @@ function FoodChecker() {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!input.trim() && !image) {
@@ -37,11 +40,17 @@ function FoodChecker() {
     }
 
     setError("");
+    setLoading(true);
 
-    console.log({
-      food: input.trim(),
-      image: image?.file,
-    });
+    try {
+      const data = await analyzeFood(input.trim());
+
+      onResult(data);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -146,10 +155,20 @@ function FoodChecker() {
 
           <button
             type="submit"
-            className="cursor-pointer mt-5 flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-[#2F855A] px-5 text-sm font-bold text-white shadow-lg shadow-[#2F855A]/20 transition hover:bg-[#276749] active:scale-[0.99]"
+            disabled={loading}
+            className="mt-5 flex h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-[#2F855A] px-5 text-sm font-bold text-white shadow-lg shadow-[#2F855A]/20 transition hover:bg-[#276749] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
           >
-            <Search size={18} strokeWidth={2.5} />
-            Check with PawSafe
+            {loading ? (
+              <>
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                Checking...
+              </>
+            ) : (
+              <>
+                <Search size={18} strokeWidth={2.5} />
+                Check with PawSafe
+              </>
+            )}
           </button>
         </form>
       </div>
