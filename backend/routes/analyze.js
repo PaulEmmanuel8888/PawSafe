@@ -1,24 +1,35 @@
 import express from "express";
+import multer from "multer";
+
 const router = express.Router();
 
-router.post("/food", (req, res) => {
-  const { food } = req.body;
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+});
 
-  if (!food || !food.trim()) {
+router.post("/food", upload.single("image"), (req, res) => {
+  const food = req.body?.food?.trim();
+  const image = req.file;
+
+  if (!food && !image) {
     return res.status(400).json({
       success: false,
-      message: "Please provide a food to analyze.",
+      message: "Please enter a food or upload an image to continue.",
     });
   }
 
-  res.json({
+  return res.status(200).json({
     success: true,
     result: {
-      food: food.trim(),
+      food: food || image.originalname,
       verdict: "safe",
-      summary: `${food.trim()} is generally considered safe for dogs when prepared appropriately.`,
+      summary:
+        "This is a temporary response. Gemini analysis will be connected next.",
       reasons: [
-        "This is a temporary response from the PawSafe backend.",
+        "PawSafe received your input successfully.",
         "Gemini analysis will be connected next.",
       ],
       warnings: [],
