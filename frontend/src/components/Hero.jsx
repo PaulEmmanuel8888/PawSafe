@@ -1,5 +1,3 @@
-import { ShieldCheck } from "lucide-react";
-
 function Hero() {
   return (
     <section className="px-5 pb-12 pt-12 sm:px-8 sm:pb-16 sm:pt-16 lg:px-12 lg:pt-20">
@@ -11,7 +9,7 @@ function Hero() {
 
         <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-[#17211B]/60 sm:text-lg">
           Check a food before you share it with your best friend. Type a food or
-          upload a photo and PawSafe will help you understand what's safe.
+          upload a photo and PawSafe will help you know what's safe.
         </p>
       </div>
     </section>

@@ -4,6 +4,7 @@ import { Camera, ImagePlus, Search, Upload, X } from "lucide-react";
 function FoodChecker() {
   const [input, setInput] = useState("");
   const [image, setImage] = useState(null);
+  const [error, setError] = useState("");
   const fileInputRef = useRef(null);
 
   const handleImageChange = (event) => {
@@ -15,6 +16,8 @@ function FoodChecker() {
       file,
       preview: URL.createObjectURL(file),
     });
+
+    setError("");
   };
 
   const removeImage = () => {
@@ -28,8 +31,15 @@ function FoodChecker() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (!input.trim() && !image) {
+      setError("Please enter a food or upload a photo to continue.");
+      return;
+    }
+
+    setError("");
+
     console.log({
-      food: input,
+      food: input.trim(),
       image: image?.file,
     });
   };
@@ -60,7 +70,10 @@ function FoodChecker() {
             <input
               type="text"
               value={input}
-              onChange={(event) => setInput(event.target.value)}
+              onChange={(event) => {
+                setInput(event.target.value);
+                setError("");
+              }}
               placeholder="e.g. grapes, chicken, chocolate..."
               className="h-14 w-full rounded-2xl border border-[#17211B]/10 bg-[#FAFAF7] pl-12 pr-4 text-sm text-[#17211B] outline-none transition placeholder:text-[#17211B]/35 focus:border-[#2F855A] focus:ring-4 focus:ring-[#2F855A]/10"
             />
@@ -124,6 +137,12 @@ function FoodChecker() {
             onChange={handleImageChange}
             className="hidden"
           />
+
+          {error && (
+            <p className="mt-4 text-center text-sm font-medium text-[#D64545]">
+              {error}
+            </p>
+          )}
 
           <button
             type="submit"
