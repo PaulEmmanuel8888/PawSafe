@@ -1,8 +1,8 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import analyzeRoutes from "./routes/analyze.js";
-dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
