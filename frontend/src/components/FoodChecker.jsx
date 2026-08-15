@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Camera, Search, X } from "lucide-react";
-import { analyzeFood } from "../services/api";
+import { analyzeFood } from "../services/api.js";
 
 function FoodChecker({ onResult }) {
   const [input, setInput] = useState("");
@@ -43,7 +43,7 @@ function FoodChecker({ onResult }) {
     setLoading(true);
 
     try {
-      const data = await analyzeFood(input.trim());
+      const data = await analyzeFood(input.trim(), image?.file);
 
       onResult(data);
     } catch (error) {
