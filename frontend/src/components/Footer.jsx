@@ -37,8 +37,8 @@ function Footer() {
             </div>
 
             <p className="mt-3 text-sm leading-6 text-[#17211B]/50">
-              A simple AI-powered way to check whether a food may be suitable
-              for your dog.
+              A simple AI-powered tool for detecting foods suitable for your
+              dog.
             </p>
           </div>
 
