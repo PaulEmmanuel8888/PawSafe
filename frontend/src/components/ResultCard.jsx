@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -43,9 +44,17 @@ function ResultCard({ result, onReset }) {
   const config = verdictConfig[result.verdict] || verdictConfig.unknown;
 
   const Icon = config.icon;
+  const resultRef = useRef(null);
+
+  useEffect(() => {
+    resultRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, []);
 
   return (
-    <section className="px-5 pb-16 sm:px-8 lg:px-12">
+    <section ref={resultRef} className="px-5 pb-16 sm:px-8 lg:px-12">
       <div className="mx-auto max-w-2xl">
         <div className="overflow-hidden rounded-3xl border border-[#17211B]/8 bg-white shadow-[0_20px_60px_rgba(23,33,27,0.08)]  mt-[10vh]">
           <div className={`border-b p-6 sm:p-7 ${config.container}`}>
