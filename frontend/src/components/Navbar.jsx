@@ -2,7 +2,7 @@ import { PawPrint } from "lucide-react";
 
 function Navbar() {
   return (
-    <header className="px-5 py-5 sm:px-8 lg:px-12">
+    <header className="px-5 py-5 sm:px-8 lg:px-12 shadow">
       <nav className="mx-auto flex max-w-6xl items-center justify-between">
         <a
           href="/"

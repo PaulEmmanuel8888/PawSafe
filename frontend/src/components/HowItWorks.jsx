@@ -26,7 +26,7 @@ const steps = [
 
 function HowItWorks() {
   return (
-    <section className="px-5 py-16 sm:px-8 sm:py-20 lg:px-12 mb-[20vh]">
+    <section id="how-it-works" className="px-5 py-16 sm:px-8 sm:py-20 lg:px-12 mb-[20vh]">
       <div className="mx-auto max-w-5xl">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#2F855A]">
