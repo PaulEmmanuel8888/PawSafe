@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://pawsafe.onrender.com/api";
 
 export async function analyzeFood(food, imageFile) {
   const formData = new FormData();
