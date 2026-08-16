@@ -21,7 +21,14 @@ function App() {
     <div className="min-h-screen bg-[#FAFAF7]">
       <Navbar />
 
-      <main>
+      <main
+        className="bg-[#FAFAF7]"
+        style={{
+          backgroundImage: "url('/pawsafe-pattern.svg')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "320px 320px",
+        }}
+      >
         {!result && (
           <>
             <Hero />
