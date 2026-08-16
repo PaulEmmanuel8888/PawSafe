@@ -47,7 +47,7 @@ function ResultCard({ result, onReset }) {
   return (
     <section className="px-5 pb-16 sm:px-8 lg:px-12">
       <div className="mx-auto max-w-2xl">
-        <div className="overflow-hidden rounded-3xl border border-[#17211B]/8 bg-white shadow-[0_20px_60px_rgba(23,33,27,0.08)]">
+        <div className="overflow-hidden rounded-3xl border border-[#17211B]/8 bg-white shadow-[0_20px_60px_rgba(23,33,27,0.08)]  mt-[10vh]">
           <div className={`border-b p-6 sm:p-7 ${config.container}`}>
             <div className="flex items-center gap-4">
               <div
